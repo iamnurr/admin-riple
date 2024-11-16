@@ -21,5 +21,8 @@ Route::middleware('auth')->group(function () {
 });
 
 Route::post('admin/bookings/store', [BookingController::class, 'store'])->name('bookings.store');
+Route::get('admin/bookings/get', function () {
+    return 'adasd';
+});
 
-require __DIR__.'/auth.php';
+require __DIR__ . '/auth.php';
