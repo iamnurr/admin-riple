@@ -20,9 +20,12 @@ Route::middleware('auth')->group(function () {
     Route::get('admin/bookings', [BookingController::class, 'index'])->name('bookings.index');
 });
 
-Route::post('admin/bookings/store', [BookingController::class, 'store'])->name('bookings.store');
-Route::get('admin/bookings/get', function () {
-    return 'adasd';
-});
+
+Route::prefix('api')
+    ->middleware('api')
+    ->group(function () {
+
+        Route::post('bookings/store', [BookingController::class, 'store'])->name('bookings.store');
+    });
 
 require __DIR__ . '/auth.php';
