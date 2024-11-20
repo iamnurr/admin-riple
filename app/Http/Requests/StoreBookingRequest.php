@@ -42,12 +42,12 @@ class StoreBookingRequest extends FormRequest
             ],
             'date' => [
                 'required',
-                'datetime',
+                // 'datetime',
             ],
             'timezone' => [
                 'required',
                 'string',
-                'max:10'
+                'max:100'
             ],
         ];
     }

@@ -22,10 +22,11 @@
                             @forelse ($bookings as $booking)
                                 <tr>
                                     <td class="p-4">{{ $booking->name }}</td>
-                                    <td class="p-4">{{ $booking->email}}</td>
-                                    <td class="p-4">{{ $booking->date}}</td>
-                                    <td class="p-4"></td>
-                                        <a href="{{ route('bookings.show', $booking->slug) }}" class="text-indigo-600 hover:underline">Show</a>
+                                    <td class="p-4">{{ $booking->email }}</td>
+                                    <td class="p-4">{{ $booking->date }}</td>
+                                    <td class="p-4">
+                                        <a href="{{ route('bookings.show', $booking->id) }}"
+                                            class="text-indigo-600 hover:underline">Show</a>
                                     </td>
                                 </tr>
                             @empty
