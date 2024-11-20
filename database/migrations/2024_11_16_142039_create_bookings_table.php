@@ -17,9 +17,9 @@ return new class extends Migration
             $table->string('email');
             $table->text('guest_email')->nullable();
             $table->text('message');
-            $table->dateTime('date');
+            $table->timestamp('date');
             $table->string('timezone');
-
+            
             $table->string('slug')->uniqid();
             $table->timestamps();
         });
