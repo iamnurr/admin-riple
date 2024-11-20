@@ -14,19 +14,30 @@
                             <tr>
                                 <th class="bg-slate-50 p-4">Name</th>
                                 <th class="bg-slate-50 p-4">Email</th>
-                                <th class="bg-slate-50 p-4">Time</th>
+                                <th class="bg-slate-50 p-4">Date</th>
+                                <th class="bg-slate-50 p-4">Action</th>
                             </tr>
                         </thead>
                         <tbody>
-                            <tr>
-                                <td class="p-4">The Sliding Mr. Bones (Next Stop, Pottersville)</td>
-                                <td class="p-4">Malcolm Lockyer</td>
-                                <td class="p-4">1961</td>
-                            </tr>
+                            @forelse ($bookings as $booking)
+                                <tr>
+                                    <td class="p-4">{{ $booking->name }}</td>
+                                    <td class="p-4">{{ $booking->email}}</td>
+                                    <td class="p-4">{{ $booking->date}}</td>
+                                    <td class="p-4"></td>
+                                        <a href="{{ route('bookings.show', $booking->slug) }}" class="text-indigo-600 hover:underline">Show</a>
+                                    </td>
+                                </tr>
+                            @empty
+                                <tr>
+                                    <td class="p-4">No data found.</td>
+                                </tr>
+                            @endforelse
                         </tbody>
                     </table>
+                    {{ $bookings->links() }}
                 </div>
-                
+
             </div>
         </div>
     </div>
