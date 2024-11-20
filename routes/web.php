@@ -18,14 +18,9 @@ Route::middleware('auth')->group(function () {
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 
     Route::get('admin/bookings', [BookingController::class, 'index'])->name('bookings.index');
+    Route::get('admin/bookings/{booking}/show', [BookingController::class, 'show'])->name('bookings.show');
 });
 
 
-Route::prefix('api')
-    ->middleware('api')
-    ->group(function () {
-
-        Route::post('bookings/store', [BookingController::class, 'store'])->name('bookings.store');
-    });
 
 require __DIR__ . '/auth.php';
