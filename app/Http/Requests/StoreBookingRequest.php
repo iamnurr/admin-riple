@@ -2,9 +2,10 @@
 
 namespace App\Http\Requests;
 
-use App\Models\User;
 use Illuminate\Foundation\Http\FormRequest;
-use Illuminate\Validation\Rule;
+use Illuminate\Contracts\Validation\Validator;
+use Illuminate\Http\Exceptions\HttpResponseException;
+
 
 class StoreBookingRequest extends FormRequest
 {
@@ -50,5 +51,27 @@ class StoreBookingRequest extends FormRequest
                 'max:100'
             ],
         ];
+    }
+
+    public function messages(): array
+    {
+        return [
+            'name.required' => 'Name is required',
+            'email.required' => 'Email is required',
+            'email.email' => 'Please enter a valid email address',
+            'guest_email.*.email' => 'Please enter a valid email address',
+            'message.required' => 'Message is required',
+            'date.required' => 'Date is required',
+            'timezone.required' => 'Timezone is required',
+        ];
+    }
+
+    protected function failedValidation(Validator $validator)
+    {
+        throw new HttpResponseException(response()->json([
+            'success' => false,
+            'message' => 'Failed to book. Please try again.',
+            'errors' => $validator->errors()
+        ], 422));
     }
 }
