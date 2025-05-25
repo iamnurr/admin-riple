@@ -8,6 +8,13 @@ use Illuminate\Http\JsonResponse;
 
 class ContactController extends Controller
 {
+    public function index()
+    {
+        $data['contacts'] = Contact::orderByDesc('created_at')
+            ->paginate(20);
+
+        return view('contacts.index', $data);
+    }
     public function submit(ContactFormRequest $request): JsonResponse
     {
         try {
@@ -29,6 +36,13 @@ class ContactController extends Controller
                 'error' => config('app.debug') ? $e->getMessage() : 'Internal server error'
             ], 500);
         }
+    }
+
+    public function show(Contact $contact)
+    {
+        $data['contact'] = $contact;
+
+        return view('contacts.show', $data);
     }
 
     public function getServiceTypes(): JsonResponse

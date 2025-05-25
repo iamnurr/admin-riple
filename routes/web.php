@@ -1,7 +1,9 @@
 <?php
 
 use App\Http\Controllers\BookingController;
+use App\Http\Controllers\ContactController;
 use App\Http\Controllers\ProfileController;
+use App\Models\Contact;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
@@ -19,6 +21,9 @@ Route::middleware('auth')->group(function () {
 
     Route::get('admin/bookings', [BookingController::class, 'index'])->name('bookings.index');
     Route::get('admin/bookings/{booking}/show', [BookingController::class, 'show'])->name('bookings.show');
+
+    Route::get('admin/contacts', [ContactController::class, 'index'])->name('contacts.index');
+    Route::get('admin/contacts/{contact}/show', [ContactController::class, 'show'])->name('contacts.show');
 });
 
 

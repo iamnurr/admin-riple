@@ -23,6 +23,16 @@ class Contact extends Model
         'project_budget' => 'decimal:2',
     ];
 
+    public function getFormattedProjectBudgetAttribute()
+    {
+        return $this->project_budget ? '$' . number_format($this->project_budget, 2) : 'N/A';
+    }
+
+    public function getFormattedServiceTypeAttribute()
+    {
+        return $this->service_type ? ucwords(str_replace('_', ' ', $this->service_type)) : 'N/A';
+    }
+
     public static function getServiceTypes()
     {
         return [
