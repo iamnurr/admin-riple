@@ -53,6 +53,10 @@ class Contact extends Model
                 'value' => 'ui_ux_design'
             ],
             [
+                'label' => 'UI animation',
+                'value' => 'ui_animation'
+            ],
+            [
                 'label' => 'Web Design',
                 'value' => 'web_design'
             ],

@@ -3,8 +3,11 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\ContactFormRequest;
+use App\Mail\ContactAdminNotification;
+use App\Mail\ContactUserNotification;
 use App\Models\Contact;
 use Illuminate\Http\JsonResponse;
+use Illuminate\Support\Facades\Mail;
 
 class ContactController extends Controller
 {
@@ -19,6 +22,12 @@ class ContactController extends Controller
     {
         try {
             $contact = Contact::create($request->validated());
+
+            // Send email to admin
+            Mail::to(config('mail.admin_address'))->send(new ContactAdminNotification($contact));
+
+            // Send email to user
+            Mail::to($contact->email)->send(new ContactUserNotification($contact));
 
             return response()->json([
                 'success' => true,
