@@ -20,7 +20,7 @@
 <body class="font-sans antialiased">
     <div class="">
 
-        <header class="p-6 bg-slate-100">
+        <header class="p-6 bg-slate-100 dark:bg-slate-900">
 
             @if (Route::has('login'))
                 <nav class="-mx-3 flex flex-1 justify-end">
@@ -47,7 +47,7 @@
         </header>
 
         <main class="p-6 min-h-screen">
-            <h1 class="text-3xl font-semibold text-center">Riple admin panel</h1>
+            <h1 class="text-3xl font-semibold text-center">Nueva</h1>
         </main>
     </div>
 </body>
